@@ -69,4 +69,11 @@ $(document).ready(function() {
   // another way to increment with the var i in the array:
     // i++;
   });
+
+  $("#deleteForm").submit(function(event) {
+    event.preventDefault();
+    var idNumber = $("#delete").val();
+    addressBook.deleteContact(idNumber);
+    console.log(addressBook);
+  });
 });
