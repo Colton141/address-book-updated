@@ -48,14 +48,12 @@ Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
 
-// newContactName = function() {
-//   var contact = contact + +="1"
-//
-// }
 
 // user interface
 $(document).ready(function() {
   var addressBook = new AddressBook();
+  // another way to increment with the var i in the array:
+  // var i = 0;
   $("#addressBook").submit(function(event) {
     event.preventDefault();
     var inputFirstName = $("input#firstName").val();
@@ -64,9 +62,11 @@ $(document).ready(function() {
     var contact = new Contact(inputFirstName, inputLastName, inputPhoneNumber)
     addressBook.addContact(contact)
     console.log(addressBook);
-    $("#id").append("<p>" + addressBook.contacts[].id + "</p>");
-    $("#first-Name").append("<p>" + addressBook.contacts[].firstName + "</p>");
-    $("#last-Name").append("<p>" + addressBook.contacts[].lastName + "</p>");
-    $("#phone-Number").append("<p>" + addressBook.contacts[0].phoneNumber + "</p>");
+    $("#id").append("<p>" + addressBook.contacts[addressBook.currentId - 1].id + "</p>");
+    $("#first-Name").append("<p>" + addressBook.contacts[addressBook.currentId - 1].firstName + "</p>");
+    $("#last-Name").append("<p>" + addressBook.contacts[addressBook.currentId - 1].lastName + "</p>");
+    $("#phone-Number").append("<p>" + addressBook.contacts[addressBook.currentId - 1].phoneNumber + "</p>");
+  // another way to increment with the var i in the array:
+    // i++;
   });
 });
