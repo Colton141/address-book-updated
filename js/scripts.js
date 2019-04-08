@@ -47,3 +47,21 @@ function Contact(firstName, lastName, phoneNumber) {
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
+
+// user interface
+$(document).ready(function() {
+  $("#addressBook").submit(function(event) {
+    event.preventDefault();
+
+    var contact = new Contact($("#firstName").val(), $("#lastName").val(), $("#phoneNumber").val());
+    var addressBook = new AddressBook();
+    addressBook.addContact(contact);
+    // var contactToAddressBook = addContact(contact);
+    $("#id").append(contact.id);
+    $("#first-Name").append(contact.firstName);
+    $("#last-Name").append(contact.lastName);
+    $("#phone-Number").append(contact.phoneNumber);
+    console.log(contact);
+    console.log(addressBook);
+  });
+});
