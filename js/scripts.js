@@ -1,23 +1,23 @@
-//Business Logic for Address Book -----
+// Business Logic for AddressBook ---------
 function AddressBook() {
   this.contacts = [],
   this.currentId = 0
 }
 
-AddressBook.prototype.addContact = function (contact) {
+AddressBook.prototype.addContact = function(contact) {
   contact.id = this.assignId();
   this.contacts.push(contact);
 }
 
-AddressBook.prototype.assignId = function () {
+AddressBook.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
 }
 
-AddressBook.prototype.findContact = function (id) {
-  for (var i = 0; i < this.contacts.length; i++) {
+AddressBook.prototype.findContact = function(id) {
+  for (var i=0; i< this.contacts.length; i++) {
     if (this.contacts[i]) {
-      if (this.contacts[i].id === id) {
+      if (this.contacts[i].id == id) {
         return this.contacts[i];
       }
     }
@@ -25,10 +25,10 @@ AddressBook.prototype.findContact = function (id) {
   return false;
 }
 
-AddressBook.prototype.deleteContact = function (id) {
-  for (var i = 0; i < this.contacts.length; i++) {
-    if (this.contact[i]) {
-      if (this.contacts[i].id === id) {
+AddressBook.prototype.deleteContact = function(id) {
+  for (var i=0; i< this.contacts.length; i++) {
+    if (this.contacts[i]) {
+      if (this.contacts[i].id == id) {
         delete this.contacts[i];
         return true;
       }
@@ -37,31 +37,36 @@ AddressBook.prototype.deleteContact = function (id) {
   return false;
 }
 
-//Business Logic for Contacts -----
+// Business Logic for Contacts ---------
 function Contact(firstName, lastName, phoneNumber) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.phoneNumber = phoneNumber;
+  this.firstName = firstName,
+  this.lastName = lastName,
+  this.phoneNumber = phoneNumber
 }
 
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
 
+// newContactName = function() {
+//   var contact = contact + +="1"
+//
+// }
+
 // user interface
 $(document).ready(function() {
+  var addressBook = new AddressBook();
   $("#addressBook").submit(function(event) {
     event.preventDefault();
-
-    var contact = new Contact($("#firstName").val(), $("#lastName").val(), $("#phoneNumber").val());
-    var addressBook = new AddressBook();
-    addressBook.addContact(contact);
-    // var contactToAddressBook = addContact(contact);
-    $("#id").append(contact.id);
-    $("#first-Name").append(contact.firstName);
-    $("#last-Name").append(contact.lastName);
-    $("#phone-Number").append(contact.phoneNumber);
-    console.log(contact);
+    var inputFirstName = $("input#firstName").val();
+    var inputLastName = $("input#lastName").val();
+    var inputPhoneNumber = $("input#phoneNumber").val();
+    var contact = new Contact(inputFirstName, inputLastName, inputPhoneNumber)
+    addressBook.addContact(contact)
     console.log(addressBook);
+    $("#id").append("<p>" + addressBook.contacts[].id + "</p>");
+    $("#first-Name").append("<p>" + addressBook.contacts[].firstName + "</p>");
+    $("#last-Name").append("<p>" + addressBook.contacts[].lastName + "</p>");
+    $("#phone-Number").append("<p>" + addressBook.contacts[0].phoneNumber + "</p>");
   });
 });
