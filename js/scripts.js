@@ -38,7 +38,7 @@ AddressBook.prototype.deleteContact = function(id) {
 }
 
 // Business Logic for Contacts ---------
-function Contact(firstName, lastName, phoneNumber, homeAddress, workEmail, personalEmail) {
+function Contact(firstName, lastName, phoneNumber, personalEmail, workEmail, homeAddress) {
   this.firstName = firstName,
   this.lastName = lastName,
   this.phoneNumber = phoneNumber,
@@ -72,8 +72,20 @@ function showContact(contactId) {
   $(".last-name").html(contact.lastName);
   $(".phone-number").html(contact.phoneNumber);
   $(".physical-address").html(contact.address);
-  $(".email-address").html(contact.emails.work);
-  $(".work-email-address").html(contact.emails.personal);
+  // $(".email-address").html(contact.emails.personal);
+  // $(".work-email-address").html(contact.emails.work);
+  if (contact.emails.personal) {
+    $(".email-address").html(contact.emails.personal);
+    $("#home").show();
+  } else {
+    $('#home').hide();
+  }
+  if (contact.emails.work) {
+    $(".work-email-address").html(contact.emails.work);
+    $("#work").show();
+  } else {
+    $('#work').hide();
+  }
   var buttons = $("#buttons");
   buttons.empty();
   buttons.append("<button class='deleteButton' id=" + contact.id + ">Delete</button>");
@@ -100,13 +112,14 @@ $(document).ready(function() {
     var inputtedEmailAddress = $("input#new-email-address").val();
     var inputtedWorkEmailAddress = $("input#new-work-email-address").val();
     var inputtedPhysicalAddress = $("input#new-physical-address").val();
+
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
     $("input#new-email-address").val("");
     $("input#new-physical-address").val("");
     $("input#new-work-email-address").val("");
-    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedPhysicalAddress, inputtedWorkEmailAddress, inputtedEmailAddress);
+    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber,inputtedEmailAddress, inputtedWorkEmailAddress, inputtedPhysicalAddress);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
   })
