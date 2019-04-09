@@ -1,12 +1,4 @@
-table, th, td {
-  border: 1px solid black;
-  padding: 5px;
-}
 
-#submit {
-  margin-bottom: 30px;
-}
-
-#deleteArea {
-  margin-top: 50px;
+#show-contact {
+  display: none;
 }
